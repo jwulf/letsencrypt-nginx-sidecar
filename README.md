@@ -4,7 +4,7 @@ Run letsencrypt and nginx in a docker-compose side car, providing automatic cert
 
 This is based on https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion, but with the nginx + letsencrypt containers decoupled from your webapp containers.
 
-This is my workaround for a letsencrypt certificate renewal exhaustion issue that some users encounter: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/issues/374
+This is my workaround for a letsencrypt certificate renewal exhaustion issue that some users encounter: [#374](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/issues/374)
 
 ## Use
 
