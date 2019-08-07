@@ -8,7 +8,7 @@ This is my workaround for a letsencrypt certificate renewal exhaustion issue tha
 
 ## Use
 
-- Configure your webapp container in [docker-compose.yml](docker-compose.yml). Make sure the webapp listens on port 80. The sidecar will listen on the container host port 443 and proxy traffic using a LetsEncrypt certificate that it will get.
+- Configure your webapp container(s) in [docker-compose.yml](docker-compose.yml). Make sure the webapp listens on port 80. The sidecar will listen on the container host port 443 and proxy traffic using a LetsEncrypt certificate that it will get.
 - Start your webapp with `docker-compose up -d`
 - Now start the sidecar with `cd sidecar && docker-compose up -d`
 
