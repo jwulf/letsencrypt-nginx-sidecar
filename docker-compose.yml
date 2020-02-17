@@ -12,4 +12,4 @@ services:
       LETSENCRYPT_HOST: www.yourdomain.com
       LETSENCRYPT_EMAIL: your-address@email.com
     networks: 
-      - application_network
+      - letsencrypt
