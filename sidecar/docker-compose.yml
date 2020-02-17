@@ -10,7 +10,7 @@ services:
     - "/etc/nginx/vhost.d"
     - "/usr/share/nginx/html"
     - "/var/run/docker.sock:/tmp/docker.sock:ro"
-    - "/home/ubuntu/certs:/etc/nginx/certs"
+    - "./certs:/etc/nginx/certs"
 
   letsencrypt-nginx-proxy-companion:
    image: jrcs/letsencrypt-nginx-proxy-companion
