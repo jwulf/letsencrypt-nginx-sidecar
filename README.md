@@ -15,7 +15,8 @@ docker network create letsencrypt
 ```
 - Now start the sidecar with `cd sidecar && docker-compose up -d`. This starts an nginx reverse proxy with a Lets Encrypt sidecar that automatically provisions certificates for application servers that join the `letsencrypt` docker network.
 
-- Use the [docker-compose.yml](docker-compose.yml) file as your template for your webapps. Set the `VIRTUAL_PORT` to the port that your container listens on. The nginx proxy will listen on the container host ports 80 and 443 and proxy traffic based on the `VIRTUAL_HOST` you set, using a LetsEncrypt certificate that it will get.
+- Use the [docker-compose.yml](docker-compose.yml) file as your template for your webapps. Set the `VIRTUAL_PORT` to the port that your container listens on. The nginx proxy will listen on the host machine's ports 80 and 443, and proxy traffic based on the `VIRTUAL_HOST` you set, using LetsEncrypt certificates that it will get.
+
 - Start your webapp with `docker-compose up -d`
 
 Now you can bring your webapp up and down as much as you need to, to update it, and have no issue with certificate renewal exhaustion, as the letsencrypt container stays up all the time.
