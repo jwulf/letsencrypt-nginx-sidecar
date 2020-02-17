@@ -22,4 +22,4 @@ services:
 networks:
  default:
   external:
-    name: application_network
+    name: letsencrypt
