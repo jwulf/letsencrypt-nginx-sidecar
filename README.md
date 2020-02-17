@@ -1,6 +1,6 @@
 # letsencrypt-nginx-sidecar
 
-Run letsencrypt and nginx in a docker-compose side car, providing automatic certificate renewal and SSL for your web app.
+Run letsencrypt and nginx in a docker-compose side car, providing automatic certificate renewal and SSL for your web apps.
 
 This is based on https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion, but with the nginx + letsencrypt containers decoupled from your webapp containers.
 
@@ -8,8 +8,14 @@ This is my workaround for a letsencrypt certificate renewal exhaustion issue tha
 
 ## Use
 
-- Configure your webapp container(s) in [docker-compose.yml](docker-compose.yml). Make sure the webapp listens on port 80. The sidecar will listen on the container host port 443 and proxy traffic using a LetsEncrypt certificate that it will get.
+- Create the `letsencrypt` docker network:
+
+```
+docker network create letsencrypt
+```
+- Now start the sidecar with `cd sidecar && docker-compose up -d`. This starts an nginx reverse proxy with a Lets Encrypt sidecar that automatically provisions certificates for application servers that join the `letsencrypt` docker network.
+
+- Use the [docker-compose.yml](docker-compose.yml) file as your template for your webapps. Set the `VIRTUAL_PORT` to the port that your container listens on. The nginx proxy will listen on the container host ports 80 and 443 and proxy traffic based on the `VIRTUAL_HOST` you set, using a LetsEncrypt certificate that it will get.
 - Start your webapp with `docker-compose up -d`
-- Now start the sidecar with `cd sidecar && docker-compose up -d`
 
 Now you can bring your webapp up and down as much as you need to, to update it, and have no issue with certificate renewal exhaustion, as the letsencrypt container stays up all the time.
